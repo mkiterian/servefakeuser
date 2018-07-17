@@ -5,6 +5,19 @@ const app = express();
 
 app.use(cors());
 
+// NOTE - when switching roles
+// a society president and a society secretary must have a fellow key-value pair in roles
+// staff members e.g cio, success ops do not have a society
+
+// Example: Society president
+// "society": {
+//   "name": "Invictus"
+// }
+// "roles": {
+//   "fellow": "abc123",
+//   "society president": "abc"
+// },
+
 app.get('/users/:id', (req, res) => {
   res.json(
     {
@@ -31,8 +44,12 @@ app.get('/users/:id', (req, res) => {
         "modifiedAt": "None",
         "name": "test test",
         "photo": "https://lh3.googleusercontent.com/-Ke1NKb5MPuk/AAAAAAAAAAI/AAAAAAAAABg/8ofOe_CueLA/photo.jpg?sz=50",
+        "society": {
+          "name": "Invictus"
+        },
         "roles": {
-          "cio": "abc"
+          "fellow": "abc123",
+          "society president": "abc"
         },
         "totaLoggedPoints": 0,
         "id": "-KjEeawq1u2_1LvCZ7cX"
